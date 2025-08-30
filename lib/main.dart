@@ -1,10 +1,19 @@
+import 'package:assestment_restaurant_app/provider/bottom_nav_provider.dart';
+import 'package:assestment_restaurant_app/screens/main/main_screen.dart';
 import 'package:assestment_restaurant_app/themes/restaurant_theme.dart';
 import 'package:assestment_restaurant_app/util/text_theme_util/util.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyRestaurantApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => BottomNavProvider()),
+      ],
+      child: MyRestaurantApp(),
+    ),
+  );
 }
 
 class MyRestaurantApp extends StatelessWidget {
@@ -23,7 +32,7 @@ class MyRestaurantApp extends StatelessWidget {
       title: 'Restaurant Application',
       theme: brightness == Brightness.light ? theme.light() : theme.dark(),
       themeMode: ThemeMode.system,
-      
+      home: MainScreen(),
     );
   }
 }
