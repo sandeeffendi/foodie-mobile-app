@@ -1,4 +1,7 @@
+import 'package:assestment_restaurant_app/data/api/api_services.dart';
 import 'package:assestment_restaurant_app/provider/bottom_nav_provider.dart';
+import 'package:assestment_restaurant_app/provider/restaurant_detail_provider.dart';
+import 'package:assestment_restaurant_app/provider/restaurant_list_provider.dart';
 import 'package:assestment_restaurant_app/screens/main/main_screen.dart';
 import 'package:assestment_restaurant_app/themes/restaurant_theme.dart';
 import 'package:assestment_restaurant_app/util/text_theme_util/util.dart';
@@ -10,6 +13,15 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => BottomNavProvider()),
+        Provider(create: (context) => ApiServices()),
+        ChangeNotifierProvider(
+          create: (context) =>
+              RestaurantListProvider(context.read<ApiServices>()),
+        ),
+        ChangeNotifierProvider(
+          create: (context) =>
+              RestaurantDetailProvider(context.read<ApiServices>()),
+        ),
       ],
       child: MyRestaurantApp(),
     ),
