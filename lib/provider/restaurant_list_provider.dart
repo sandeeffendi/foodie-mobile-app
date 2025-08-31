@@ -1,6 +1,5 @@
 import 'package:assestment_restaurant_app/data/api/api_services.dart';
 import 'package:assestment_restaurant_app/data/model/response/restaurant_detail_response.dart';
-import 'package:assestment_restaurant_app/data/model/restaurant_detail/retaurant_detail.dart';
 import 'package:assestment_restaurant_app/static/restaurant_list_state.dart';
 import 'package:flutter/material.dart';
 

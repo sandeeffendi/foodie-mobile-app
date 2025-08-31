@@ -1,3 +1,4 @@
+import 'package:assestment_restaurant_app/screens/home/restaurant_card_shimmer.dart';
 import 'package:flutter/material.dart';
 
 class BookmarkScreen extends StatelessWidget {
@@ -5,6 +6,6 @@ class BookmarkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Ini adalah bookmark screen')));
+    return Scaffold(body: Center(child: RestaurantCardShimmer()));
   }
 }

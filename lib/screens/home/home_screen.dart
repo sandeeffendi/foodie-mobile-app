@@ -1,6 +1,8 @@
 import 'package:assestment_restaurant_app/provider/restaurant_detail_provider.dart';
 import 'package:assestment_restaurant_app/provider/restaurant_list_provider.dart';
+import 'package:assestment_restaurant_app/routes/navigation_route.dart';
 import 'package:assestment_restaurant_app/screens/home/restaurant_card.dart';
+import 'package:assestment_restaurant_app/screens/home/restaurant_card_shimmer.dart';
 import 'package:assestment_restaurant_app/static/restaurant_detail_state.dart';
 import 'package:assestment_restaurant_app/static/restaurant_list_state.dart';
 import 'package:provider/provider.dart';
@@ -58,6 +60,15 @@ class _HomeScreenState extends State<HomeScreen> {
           Consumer<RestaurantListProvider>(
             builder: (context, value, child) {
               return switch (value.listState) {
+                /// Restaurant State Loading
+                (RestaurantListStateLoading() || RestaurantListStateNone()) =>
+                  ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (BuildContext context, int index) {
+                      return RestaurantCardShimmer();
+                    },
+                  ),
+
                 /// Loaded State Value From Restaurant List Provider
                 RestaurantListStateLoaded(data: var restaurantList) =>
                   ListView.builder(
@@ -71,9 +82,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         RestaurantDetailStateLoaded(data: var detail) =>
                           RestaurantCard(
                             restaurant: restaurant,
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                NavigationRoute.detail.name,
+                                arguments: restaurant.id,
+                              );
+                            },
                             restaurantDetail: detail,
                           ),
+
+                        /// Restaurant State Error
+                        RestaurantListStateError(error: var message) => Center(
+                          child: Text(message),
+                        ),
+
+                        /// Default state value
                         _ => const SizedBox(),
                       };
 
