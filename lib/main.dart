@@ -4,7 +4,6 @@ import 'package:assestment_restaurant_app/provider/restaurant_detail_provider.da
 import 'package:assestment_restaurant_app/provider/restaurant_list_provider.dart';
 import 'package:assestment_restaurant_app/routes/navigation_route.dart';
 import 'package:assestment_restaurant_app/screens/detail/detail_screen.dart';
-import 'package:assestment_restaurant_app/screens/home/home_screen.dart';
 import 'package:assestment_restaurant_app/screens/main/main_screen.dart';
 import 'package:assestment_restaurant_app/screens/splash/splash_screen.dart';
 import 'package:assestment_restaurant_app/themes/restaurant_theme.dart';

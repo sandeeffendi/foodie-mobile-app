@@ -6,6 +6,8 @@ class RestaurantListStateNone extends RestaurantListState {}
 
 class RestaurantListStateLoading extends RestaurantListState {}
 
+class RestaurantListStatePartialLoaded extends RestaurantListState {}
+
 class RestaurantListStateLoaded extends RestaurantListState {
   List<Restaurant> data;
 

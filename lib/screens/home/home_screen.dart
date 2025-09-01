@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Consumer<RestaurantListProvider>(
             builder: (context, value, child) {
               return switch (value.listState) {
-                /// Restaurant State Loading
+                /// Loading State Restaurant
                 (RestaurantListStateLoading() || RestaurantListStateNone()) =>
                   ListView.builder(
                     itemCount: 10,
@@ -69,7 +69,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
 
-                /// Loaded State Value From Restaurant List Provider
+                /// Partial Loaded State Restaurant
+                RestaurantListStatePartialLoaded() => ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) {
+                    return RestaurantCardShimmer();
+                  },
+                ),
+
+                /// Loaded State Restaurant
                 RestaurantListStateLoaded(data: var restaurantList) =>
                   ListView.builder(
                     itemCount: restaurantList.length,
@@ -92,16 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             restaurantDetail: detail,
                           ),
 
-                        /// Restaurant State Error
-                        RestaurantListStateError(error: var message) => Center(
-                          child: Text(message),
-                        ),
-
                         /// Default state value
-                        _ => const SizedBox(),
+                        _ => const RestaurantCardShimmer(),
                       };
-
-                      /// Restaurant Detial Provider
                     },
                   ),
 

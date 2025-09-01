@@ -10,6 +10,8 @@ class RestaurantDetailProvider extends ChangeNotifier {
 
   Map<String, RestaurantDetailState> get result => _result;
 
+  RestaurantDetailState? getDetailById(String id) => _result[id];
+
   Future<void> fetchRestaurantDetail(String id) async {
     /// Return Loading state value
     _result[id] = RestaurantDetailStateLoading();

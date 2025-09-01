@@ -22,25 +22,33 @@ class RestaurantListProvider extends ChangeNotifier {
   /// Fetch Method Restaurant List from API
   Future<void> fetchRestaurantList() async {
     _listState = RestaurantListStateLoading();
-
-    final result = await _apiServices.getRestaurantlist();
+    notifyListeners();
 
     /// Error handling on result value
     try {
+      /// Get data from API
+      final result = await _apiServices.getRestaurantlist();
+
       if (result.error) {
         _listState = RestaurantListStateError(result.message);
       } else {
-        _listState = RestaurantListStateLoaded(result.restaurants);
+        _listState = RestaurantListStatePartialLoaded();
 
-        /// Prefetch each Restaurant Detail
-        for (final result in result.restaurants) {
-          _apiServices.getRestaurantDetail(result.id).then((detailResponse) {
+        /// Wait for Detail Response fetched
+        await Future.wait(
+          result.restaurants.map((result) async {
+            final detailResponse = await _apiServices.getRestaurantDetail(
+              result.id,
+            );
+
             if (!detailResponse.error) {
               _detailCache[result.id] = detailResponse;
-              notifyListeners();
             }
-          });
-        }
+          }),
+        );
+
+        /// Then return Loaded State value
+        _listState = RestaurantListStateLoaded(result.restaurants);
       }
     }
     /// Catch Block on Exception state error
