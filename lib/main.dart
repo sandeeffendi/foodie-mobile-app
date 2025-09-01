@@ -1,7 +1,7 @@
 import 'package:assestment_restaurant_app/data/api/api_services.dart';
-import 'package:assestment_restaurant_app/provider/bottom_nav_provider.dart';
-import 'package:assestment_restaurant_app/provider/restaurant_detail_provider.dart';
-import 'package:assestment_restaurant_app/provider/restaurant_list_provider.dart';
+import 'package:assestment_restaurant_app/provider/bottom_nav/bottom_nav_provider.dart';
+import 'package:assestment_restaurant_app/provider/restaurant_detail/restaurant_detail_provider.dart';
+import 'package:assestment_restaurant_app/provider/restaurant_list/restaurant_list_provider.dart';
 import 'package:assestment_restaurant_app/routes/navigation_route.dart';
 import 'package:assestment_restaurant_app/screens/detail/detail_screen.dart';
 import 'package:assestment_restaurant_app/screens/main/main_screen.dart';

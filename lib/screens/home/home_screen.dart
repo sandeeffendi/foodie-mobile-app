@@ -1,5 +1,5 @@
-import 'package:assestment_restaurant_app/provider/restaurant_detail_provider.dart';
-import 'package:assestment_restaurant_app/provider/restaurant_list_provider.dart';
+import 'package:assestment_restaurant_app/provider/restaurant_detail/restaurant_detail_provider.dart';
+import 'package:assestment_restaurant_app/provider/restaurant_list/restaurant_list_provider.dart';
 import 'package:assestment_restaurant_app/routes/navigation_route.dart';
 import 'package:assestment_restaurant_app/screens/home/restaurant_card.dart';
 import 'package:assestment_restaurant_app/screens/home/restaurant_card_shimmer.dart';
@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     Future.microtask(() async {
+      if (!mounted) return;
       final listProvider = context.read<RestaurantListProvider>();
       final detailProvider = context.read<RestaurantDetailProvider>();
 
@@ -91,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           RestaurantCard(
                             restaurant: restaurant,
                             onTap: () {
-                              Navigator.pushNamed(
+                              Navigator.pushReplacementNamed(
                                 context,
                                 NavigationRoute.detail.name,
                                 arguments: restaurant.id,
@@ -105,6 +106,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       };
                     },
                   ),
+
+                RestaurantDetailStateError(data: var message) => Center(
+                  child: Text(message),
+                ),
 
                 /// Default Value
                 _ => const SizedBox(),

@@ -1,4 +1,4 @@
-import 'package:assestment_restaurant_app/provider/bottom_nav_provider.dart';
+import 'package:assestment_restaurant_app/provider/bottom_nav/bottom_nav_provider.dart';
 import 'package:assestment_restaurant_app/screens/bookmark/bookmark_screen.dart';
 import 'package:assestment_restaurant_app/screens/home/home_screen.dart';
 import 'package:assestment_restaurant_app/screens/settings/setting_screen.dart';
