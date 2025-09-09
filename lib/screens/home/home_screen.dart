@@ -47,15 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final detailProvider = context.watch<RestaurantDetailProvider>();
 
     return Scaffold(
-      floatingActionButton: CircleAvatar(child: Icon(Icons.add)),
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-          ),
-        ],
-      ),
       body:
           /// Restaurant List Provider
           Consumer<RestaurantListProvider>(

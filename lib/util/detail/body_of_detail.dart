@@ -1,4 +1,5 @@
 import 'package:assestment_restaurant_app/data/model/restaurant_detail/retaurant_detail.dart';
+import 'package:assestment_restaurant_app/util/detail/add_customer_review/add_review.dart';
 import 'package:assestment_restaurant_app/util/detail/appbar_of_detail.dart';
 import 'package:assestment_restaurant_app/util/detail/menu_category_of_detail.dart';
 import 'package:assestment_restaurant_app/util/detail/review_of_detail.dart';
@@ -120,14 +121,16 @@ class _BodyOfDetailState extends State<BodyOfDetail> {
                   ),
                 ),
 
+                /// Restaurant Menus Display
                 MenuCategoryOfDetail(
                   restaurantDetailMenus: widget.restaurantDetail,
                 ),
 
+                /// Restaurant Customer Review Display
                 ReviewOfDetail(restaurantDetail: widget.restaurantDetail),
 
-                // TODO: Create add new review feature
-                
+                /// Add Restaurant Review
+                AddReview(restaurantDetail: widget.restaurantDetail),
               ],
             ),
           ),

@@ -55,14 +55,13 @@ class ApiServices {
     String name,
     String review,
   ) async {
-
     /// Body request model
     Map<String, dynamic> body = {'id': id, 'name': name, 'review': review};
 
     final response = await http.post(
       Uri.parse('$_baseUrl/review'),
       headers: {'Content-Type': 'application/json'},
-      body: body,
+      body: jsonEncode(body),
     );
 
     /// Check Error First
@@ -83,5 +82,4 @@ class ApiServices {
   }
 
   /// Get Restaurant by Name, Category, & Menu Method
-  
 }

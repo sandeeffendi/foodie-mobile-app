@@ -1,4 +1,5 @@
 import 'package:assestment_restaurant_app/data/api/api_services.dart';
+import 'package:assestment_restaurant_app/provider/add_review/add_review_provider.dart';
 import 'package:assestment_restaurant_app/provider/bottom_nav/bottom_nav_provider.dart';
 import 'package:assestment_restaurant_app/provider/restaurant_detail/restaurant_detail_provider.dart';
 import 'package:assestment_restaurant_app/provider/restaurant_list/restaurant_list_provider.dart';
@@ -24,6 +25,9 @@ void main() {
         ChangeNotifierProvider(
           create: (context) =>
               RestaurantDetailProvider(context.read<ApiServices>()),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AddReviewProvider(context.read<ApiServices>()),
         ),
       ],
       child: MyRestaurantApp(),
