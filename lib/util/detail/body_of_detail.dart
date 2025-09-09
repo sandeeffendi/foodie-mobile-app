@@ -1,6 +1,7 @@
 import 'package:assestment_restaurant_app/data/model/restaurant_detail/retaurant_detail.dart';
 import 'package:assestment_restaurant_app/util/detail/appbar_of_detail.dart';
 import 'package:assestment_restaurant_app/util/detail/menu_category_of_detail.dart';
+import 'package:assestment_restaurant_app/util/detail/review_of_detail.dart';
 import 'package:flutter/material.dart';
 
 class BodyOfDetail extends StatefulWidget {
@@ -123,7 +124,10 @@ class _BodyOfDetailState extends State<BodyOfDetail> {
                   restaurantDetailMenus: widget.restaurantDetail,
                 ),
 
-                // TODO: Display Restaurant customer review
+                ReviewOfDetail(restaurantDetail: widget.restaurantDetail),
+
+                // TODO: Create add new review feature
+                
               ],
             ),
           ),

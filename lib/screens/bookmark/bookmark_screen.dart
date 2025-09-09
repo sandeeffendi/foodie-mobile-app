@@ -6,6 +6,15 @@ class BookmarkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: RestaurantCardShimmer()));
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+
+        children: [
+          Center(child: RestaurantCardShimmer()),
+          SizedBox.square(dimension: 10),
+        ],
+      ),
+    );
   }
 }

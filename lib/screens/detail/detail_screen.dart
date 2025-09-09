@@ -38,7 +38,7 @@ class _DetailScreenState extends State<DetailScreen> {
             builder: (context, value, child) =>
                 switch (value.result[widget.restaurantId]) {
                   /// Loading state value
-                  RestaurantDetailStateLoading() =>
+                RestaurantDetailStateLoading() =>
                     const RestaurantCardShimmer(),
 
                   /// Loaded state value
