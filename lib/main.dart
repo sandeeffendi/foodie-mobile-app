@@ -1,6 +1,7 @@
 import 'package:assestment_restaurant_app/data/api/api_services.dart';
 import 'package:assestment_restaurant_app/provider/add_review/add_review_provider.dart';
 import 'package:assestment_restaurant_app/provider/bottom_nav/bottom_nav_provider.dart';
+import 'package:assestment_restaurant_app/provider/restaurant_detail/detail_description_provider.dart';
 import 'package:assestment_restaurant_app/provider/restaurant_detail/restaurant_detail_provider.dart';
 import 'package:assestment_restaurant_app/provider/restaurant_list/restaurant_list_provider.dart';
 import 'package:assestment_restaurant_app/routes/navigation_route.dart';
@@ -29,6 +30,9 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => AddReviewProvider(context.read<ApiServices>()),
         ),
+        ChangeNotifierProvider(
+          create: (context) => DetailDescriptionProvider(),
+        ),
       ],
       child: MyRestaurantApp(),
     ),
@@ -40,8 +44,6 @@ class MyRestaurantApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brightness = View.of(context).platformDispatcher.platformBrightness;
-
     TextTheme textTheme = createTextTheme(context, 'Montserrat', 'Montserrat');
 
     MaterialTheme theme = MaterialTheme(textTheme);
@@ -49,7 +51,8 @@ class MyRestaurantApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Restaurant Application',
-      theme: brightness == Brightness.light ? theme.light() : theme.dark(),
+      theme: theme.light(),
+      darkTheme: theme.dark(),
       themeMode: ThemeMode.system,
       initialRoute: NavigationRoute.splash.name,
       routes: {
