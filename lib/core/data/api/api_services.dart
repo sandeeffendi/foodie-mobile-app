@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:assestment_restaurant_app/data/model/response/add_review_response_restaurant.dart';
-import 'package:assestment_restaurant_app/data/model/response/restaurant_detail_response.dart';
+import 'package:assestment_restaurant_app/core/data/model/response/add_review_response_restaurant.dart';
+import 'package:assestment_restaurant_app/core/data/model/response/restaurant_detail_response.dart';
+import 'package:assestment_restaurant_app/core/data/model/response/restaurant_list_response.dart';
 import 'package:http/http.dart' as http;
-import 'package:assestment_restaurant_app/data/model/response/restaurant_list_response.dart';
 
 class ApiServices {
   static const String _baseUrl = 'https://restaurant-api.dicoding.dev';

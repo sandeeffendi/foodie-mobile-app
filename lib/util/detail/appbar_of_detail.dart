@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:assestment_restaurant_app/data/model/restaurant_detail/retaurant_detail.dart';
+import 'package:assestment_restaurant_app/core/data/model/restaurant_detail/retaurant_detail.dart';
 import 'package:assestment_restaurant_app/routes/navigation_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +12,6 @@ class AppbarOfDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SliverAppBar(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarBrightness: Brightness.dark,

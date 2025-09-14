@@ -1,5 +1,5 @@
-import 'package:assestment_restaurant_app/provider/bottom_nav/bottom_nav_provider.dart';
-import 'package:assestment_restaurant_app/screens/bookmark/bookmark_screen.dart';
+import 'package:assestment_restaurant_app/core/provider/bottom_nav/bottom_nav_provider.dart';
+import 'package:assestment_restaurant_app/screens/favorite/favorite_screen.dart';
 import 'package:assestment_restaurant_app/screens/home/home_screen.dart';
 import 'package:assestment_restaurant_app/screens/settings/setting_screen.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
 
-  final List<Widget> _pages = [HomeScreen(), BookmarkScreen(), SettingScreen()];
+  final List<Widget> _pages = [HomeScreen(), FavoriteScreen(), SettingScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +40,9 @@ class MainScreen extends StatelessWidget {
 
           /// Bottom bar item: Bookmark
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
-            label: 'Bookmark',
-            tooltip: 'Bookmark',
+            icon: Icon(Icons.favorite),
+            label: 'Favorites',
+            tooltip: 'Favorites',
           ),
 
           /// Bottom barn item:  Settings

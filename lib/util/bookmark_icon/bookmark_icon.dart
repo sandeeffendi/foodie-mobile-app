@@ -1,6 +1,6 @@
-import 'package:assestment_restaurant_app/data/model/restaurant_detail/retaurant_detail.dart';
-import 'package:assestment_restaurant_app/provider/bookmark/bookmark_icon_provider.dart';
-import 'package:assestment_restaurant_app/provider/bookmark/bookmark_list_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/bookmark/bookmark_icon_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/bookmark/bookmark_list_provider.dart';
+import 'package:assestment_restaurant_app/core/data/model/restaurant_detail/retaurant_detail.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
-import 'package:assestment_restaurant_app/data/model/restaurant_detail/customer_review/customer_review.dart';
-import 'package:assestment_restaurant_app/data/model/restaurant_detail/menu/menu.dart';
+import 'package:assestment_restaurant_app/core/data/model/restaurant_detail/customer_review/customer_review.dart';
+import 'package:assestment_restaurant_app/core/data/model/restaurant_detail/menu/menu.dart';
 
 class RestaurantDetail {
   final String id;

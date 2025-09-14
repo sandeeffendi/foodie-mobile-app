@@ -1,4 +1,4 @@
-import 'package:assestment_restaurant_app/provider/restaurant_detail/restaurant_detail_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/restaurant_detail/restaurant_detail_provider.dart';
 import 'package:assestment_restaurant_app/screens/home/restaurant_card_shimmer.dart';
 import 'package:assestment_restaurant_app/static/restaurant_detail_state.dart';
 import 'package:assestment_restaurant_app/util/detail/body_of_detail.dart';
@@ -38,7 +38,7 @@ class _DetailScreenState extends State<DetailScreen> {
             builder: (context, value, child) =>
                 switch (value.result[widget.restaurantId]) {
                   /// Loading state value
-                RestaurantDetailStateLoading() =>
+                  RestaurantDetailStateLoading() =>
                     const RestaurantCardShimmer(),
 
                   /// Loaded state value

@@ -1,5 +1,8 @@
-import 'package:assestment_restaurant_app/data/model/restaurant_detail/retaurant_detail.dart';
-import 'package:assestment_restaurant_app/provider/restaurant_detail/detail_description_provider.dart';
+import 'package:assestment_restaurant_app/core/data/model/favorite/favorite.dart';
+import 'package:assestment_restaurant_app/core/provider/favorites/favorites_icon_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/favorites/favorites_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/restaurant_detail/detail_description_provider.dart';
+import 'package:assestment_restaurant_app/core/data/model/restaurant_detail/retaurant_detail.dart';
 import 'package:assestment_restaurant_app/util/detail/add_customer_review/add_review.dart';
 import 'package:assestment_restaurant_app/util/detail/appbar_of_detail.dart';
 import 'package:assestment_restaurant_app/util/detail/menu_category_of_detail.dart';
@@ -18,11 +21,27 @@ class BodyOfDetail extends StatefulWidget {
 
 class _BodyOfDetailState extends State<BodyOfDetail> {
   @override
+  void initState() {
+    super.initState();
+
+    final favoriteProvider = context.read<FavoritesProvider>();
+    final favoritesIconProvider = context.read<FavoritesIconProvider>();
+
+    Future.microtask(() async {
+    final result = await favoriteProvider.isFavorite(
+        widget.restaurantDetail.id,
+      );
+      favoritesIconProvider.setFavorite(result);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final descriptionProvider = context.watch<DetailDescriptionProvider>();
+    final favoriteProvider = context.read<FavoritesProvider>();
+    final favoritesIconProvider = context.watch<FavoritesIconProvider>();
 
     return CustomScrollView(
-      // physics: const BouncingScrollPhysics(),
       slivers: <Widget>[
         AppbarOfDetail(restaurantDetail: widget.restaurantDetail),
         SliverToBoxAdapter(
@@ -33,11 +52,47 @@ class _BodyOfDetailState extends State<BodyOfDetail> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// Restaurant Detail Name
-                Text(
-                  widget.restaurantDetail.name,
-                  style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      widget.restaurantDetail.name,
+                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    /// Favorites Button
+                    IconButton(
+                      onPressed: () async {
+                        if (favoritesIconProvider.isFavorite) {
+                          await favoriteProvider.deleteFavorites(
+                            widget.restaurantDetail.id,
+                          );
+                          favoritesIconProvider.setFavorite(false);
+                        } else {
+                          await favoriteProvider.addFavorites(
+                            Favorite(
+                              id: widget.restaurantDetail.id,
+                              name: widget.restaurantDetail.name,
+                              city: widget.restaurantDetail.city,
+                              rating: widget.restaurantDetail.rating.toDouble(),
+                              pictureId: widget.restaurantDetail.pictureId,
+                            ),
+                          );
+                          favoritesIconProvider.setFavorite(true);
+                        }
+                      },
+                      icon: Icon(
+                        favoritesIconProvider.isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: favoritesIconProvider.isFavorite
+                            ? Colors.red
+                            : Colors.grey,
+                      ),
+                    ),
+                  ],
                 ),
 
                 const SizedBox(height: 8),
@@ -156,8 +211,8 @@ class _BodyOfDetailState extends State<BodyOfDetail> {
                                 style: Theme.of(context).textTheme.bodyLarge,
                                 overflow:
                                     descriptionProvider.isDescriptionExpanded
-                                    ? TextOverflow.ellipsis
-                                    : null,
+                                    ? null
+                                    : TextOverflow.ellipsis,
                                 maxLines:
                                     descriptionProvider.isDescriptionExpanded
                                     ? null
@@ -199,6 +254,3 @@ class _BodyOfDetailState extends State<BodyOfDetail> {
     );
   }
 }
-
-/// comment ini seharusnya di reset
-/// ini juga seharusnya di reset

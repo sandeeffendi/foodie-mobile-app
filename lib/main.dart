@@ -1,15 +1,17 @@
-import 'package:assestment_restaurant_app/data/api/api_services.dart';
-import 'package:assestment_restaurant_app/provider/add_review/add_review_provider.dart';
-import 'package:assestment_restaurant_app/provider/bottom_nav/bottom_nav_provider.dart';
-import 'package:assestment_restaurant_app/provider/restaurant_detail/detail_description_provider.dart';
-import 'package:assestment_restaurant_app/provider/restaurant_detail/restaurant_detail_provider.dart';
-import 'package:assestment_restaurant_app/provider/restaurant_list/restaurant_list_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/add_review/add_review_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/bottom_nav/bottom_nav_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/favorites/favorites_icon_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/favorites/favorites_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/restaurant_detail/detail_description_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/restaurant_detail/restaurant_detail_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/restaurant_list/restaurant_list_provider.dart';
+import 'package:assestment_restaurant_app/core/data/api/api_services.dart';
 import 'package:assestment_restaurant_app/routes/navigation_route.dart';
 import 'package:assestment_restaurant_app/screens/detail/detail_screen.dart';
 import 'package:assestment_restaurant_app/screens/main/main_screen.dart';
 import 'package:assestment_restaurant_app/screens/splash/splash_screen.dart';
-import 'package:assestment_restaurant_app/themes/restaurant_theme.dart';
-import 'package:assestment_restaurant_app/util/text_theme_util/util.dart';
+import 'package:assestment_restaurant_app/core/themes/restaurant_theme.dart';
+import 'package:assestment_restaurant_app/util/fonts/restaurant_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,6 +35,8 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => DetailDescriptionProvider(),
         ),
+        ChangeNotifierProvider(create: (context) => FavoritesProvider()),
+        ChangeNotifierProvider(create: (context) => FavoritesIconProvider()),
       ],
       child: MyRestaurantApp(),
     ),
@@ -44,15 +48,11 @@ class MyRestaurantApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme textTheme = createTextTheme(context, 'Montserrat', 'Montserrat');
-
-    MaterialTheme theme = MaterialTheme(textTheme);
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Restaurant Application',
-      theme: theme.light(),
-      darkTheme: theme.dark(),
+      theme: MaterialTheme(RestaurantTextStyle.lightTextTheme).light(),
+      darkTheme: MaterialTheme(RestaurantTextStyle.darkTextTheme).dark(),
       themeMode: ThemeMode.system,
       initialRoute: NavigationRoute.splash.name,
       routes: {

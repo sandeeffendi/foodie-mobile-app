@@ -1,5 +1,5 @@
-import 'package:assestment_restaurant_app/provider/restaurant_detail/restaurant_detail_provider.dart';
-import 'package:assestment_restaurant_app/provider/restaurant_list/restaurant_list_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/restaurant_detail/restaurant_detail_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/restaurant_list/restaurant_list_provider.dart';
 import 'package:assestment_restaurant_app/routes/navigation_route.dart';
 import 'package:assestment_restaurant_app/screens/home/restaurant_card.dart';
 import 'package:assestment_restaurant_app/screens/home/restaurant_card_shimmer.dart';

@@ -1,4 +1,5 @@
-import 'package:assestment_restaurant_app/data/model/restaurant_detail/menu/menu.dart';
+
+import 'package:assestment_restaurant_app/core/data/model/restaurant_detail/menu/menu.dart';
 
 sealed class RestaurantMenuState {}
 

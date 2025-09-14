@@ -1,5 +1,5 @@
-import 'package:assestment_restaurant_app/data/model/restaurant_detail/customer_review/customer_review.dart';
-import 'package:assestment_restaurant_app/data/model/restaurant_detail/retaurant_detail.dart';
+import 'package:assestment_restaurant_app/core/data/model/restaurant_detail/customer_review/customer_review.dart';
+import 'package:assestment_restaurant_app/core/data/model/restaurant_detail/retaurant_detail.dart';
 import 'package:assestment_restaurant_app/util/detail/review_card.dart';
 import 'package:flutter/material.dart';
 

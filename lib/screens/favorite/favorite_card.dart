@@ -1,18 +1,11 @@
-import 'package:assestment_restaurant_app/core/data/model/restaurant/restaurant.dart';
-import 'package:assestment_restaurant_app/core/data/model/restaurant_detail/retaurant_detail.dart';
+import 'package:assestment_restaurant_app/core/data/model/favorite/favorite.dart';
 import 'package:flutter/material.dart';
 
-class RestaurantCard extends StatelessWidget {
-  final Restaurant restaurant;
+class FavoriteCard extends StatelessWidget {
+  final Favorite favorite;
   final Function() onTap;
-  final RestaurantDetail restaurantDetail;
 
-  const RestaurantCard({
-    super.key,
-    required this.restaurant,
-    required this.onTap,
-    required this.restaurantDetail,
-  });
+  const FavoriteCard({super.key, required this.favorite, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +25,7 @@ class RestaurantCard extends StatelessWidget {
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Image.network(
-                    'https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}',
+                    'https://restaurant-api.dicoding.dev/images/small/${favorite.pictureId}',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -50,7 +43,7 @@ class RestaurantCard extends StatelessWidget {
                 children: [
                   /// Restaurant Name
                   Text(
-                    restaurant.name,
+                    favorite.name,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -68,26 +61,20 @@ class RestaurantCard extends StatelessWidget {
                           children: [
                             Icon(Icons.pin_drop_outlined),
                             SizedBox.square(dimension: 4),
-                            Text(restaurant.city),
+                            Text(favorite.city),
                           ],
                         ),
                       ),
 
                       SizedBox.square(dimension: 8),
 
-                      /// Ratings and Review count
+                      /// Ratings
                       Expanded(
                         child: Row(
                           children: [
                             Icon(Icons.star_border_outlined),
                             SizedBox.square(dimension: 4),
-                            Text(restaurant.rating.toString()),
-                            SizedBox.square(dimension: 8),
-                            Text(
-                              '(${restaurantDetail.customerReviews.length.toString()} reviews)',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
+                            Text(favorite.rating.toString()),
                           ],
                         ),
                       ),
@@ -115,25 +102,6 @@ class RestaurantCard extends StatelessWidget {
                                   color: Theme.of(context).colorScheme.surface,
                                 ),
                           ),
-                        ),
-                      ),
-
-                      SizedBox.square(dimension: 8),
-
-                      /// Address
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.my_location_outlined),
-                            SizedBox.square(dimension: 8),
-                            Expanded(
-                              child: Text(
-                                restaurantDetail.address,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
                         ),
                       ),
                     ],
