@@ -6,6 +6,7 @@ import 'package:assestment_restaurant_app/core/provider/restaurant_detail/detail
 import 'package:assestment_restaurant_app/core/provider/restaurant_detail/restaurant_detail_provider.dart';
 import 'package:assestment_restaurant_app/core/provider/restaurant_list/restaurant_list_provider.dart';
 import 'package:assestment_restaurant_app/core/data/api/api_services.dart';
+import 'package:assestment_restaurant_app/core/provider/themes/themes_provider.dart';
 import 'package:assestment_restaurant_app/routes/navigation_route.dart';
 import 'package:assestment_restaurant_app/screens/detail/detail_screen.dart';
 import 'package:assestment_restaurant_app/screens/main/main_screen.dart';
@@ -15,7 +16,12 @@ import 'package:assestment_restaurant_app/util/fonts/restaurant_text_style.dart'
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final themeProvider = ThemesProvider();
+  await themeProvider.loadThemeMode();
+
   runApp(
     MultiProvider(
       providers: [
@@ -37,6 +43,7 @@ void main() {
         ),
         ChangeNotifierProvider(create: (context) => FavoritesProvider()),
         ChangeNotifierProvider(create: (context) => FavoritesIconProvider()),
+        ChangeNotifierProvider(create: (context) => ThemesProvider()),
       ],
       child: MyRestaurantApp(),
     ),
@@ -48,12 +55,14 @@ class MyRestaurantApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = context.watch<ThemesProvider>();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Restaurant Application',
       theme: MaterialTheme(RestaurantTextStyle.lightTextTheme).light(),
       darkTheme: MaterialTheme(RestaurantTextStyle.darkTextTheme).dark(),
-      themeMode: ThemeMode.system,
+      themeMode: themeProvider.themeMode,
       initialRoute: NavigationRoute.splash.name,
       routes: {
         NavigationRoute.splash.name: (context) => SplashScreen(),
