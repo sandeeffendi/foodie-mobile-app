@@ -28,7 +28,7 @@ class _BodyOfDetailState extends State<BodyOfDetail> {
     final favoritesIconProvider = context.read<FavoritesIconProvider>();
 
     Future.microtask(() async {
-    final result = await favoriteProvider.isFavorite(
+      final result = await favoriteProvider.isFavorite(
         widget.restaurantDetail.id,
       );
       favoritesIconProvider.setFavorite(result);

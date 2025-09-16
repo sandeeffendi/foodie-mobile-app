@@ -52,11 +52,7 @@ class FavoritesDb {
 
   /// Hapus data berdasarkan id
   Future<void> delete(String id) async {
-    await (await db).delete(
-      tableFavorites,
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    await (await db).delete(tableFavorites, where: 'id = ?', whereArgs: [id]);
   }
 
   /// Cek apakah data ada
