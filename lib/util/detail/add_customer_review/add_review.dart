@@ -25,6 +25,7 @@ class _AddReviewState extends State<AddReview> {
 
   Future<void> _submitReview(BuildContext context) async {
     final reviewProvider = context.read<AddReviewProvider>();
+
     if (_formKey.currentState!.validate()) {
       await reviewProvider.addReview(
         widget.restaurantDetail.id,
@@ -35,25 +36,29 @@ class _AddReviewState extends State<AddReview> {
 
     /// Show dialog if form succesfully submitted
     if (reviewProvider.isSuccess) {
-      await showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-          title: const Text('Success'),
-          content: const Text('Review berhasil disubmit'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
+      if (!mounted) return;
 
-                /// reset form and provider state
-                _resetForm();
-                reviewProvider.resetState();
-              },
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: const Text('Success'),
+            content: const Text('Review berhasil disubmit'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+
+                  /// reset form and provider state
+                  _resetForm();
+                  reviewProvider.resetState();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      });
     }
   }
 
