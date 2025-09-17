@@ -24,7 +24,7 @@ class FakeApiServicesSuccess extends ApiServices {
           name: 'Warung Sate',
           city: 'Jakarta',
           rating: 4.5,
-          pictureId: 'pic1', description: '',
+          pictureId: 'pic1', description: 'lorem lerum dolor dolores',
         ),
       ],
     );
