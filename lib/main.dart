@@ -74,7 +74,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => FavoritesIconProvider()),
 
         /// Themes Provider
-        ChangeNotifierProvider(create: (context) => ThemesProvider()),
+        ChangeNotifierProvider.value(value: themeProvider),
       ],
       child: MyRestaurantApp(),
     ),
