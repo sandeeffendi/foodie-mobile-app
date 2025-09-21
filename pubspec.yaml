@@ -41,6 +41,9 @@ dependencies:
   path: ^1.9.1
   shared_preferences: ^2.5.3
   test: ^1.26.2
+  flutter_local_notifications: ^19.4.2
+  flutter_timezone: ^5.0.0
+  timezone: ^0.10.1
 
 dev_dependencies:
   flutter_test:

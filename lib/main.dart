@@ -1,7 +1,9 @@
+import 'package:assestment_restaurant_app/core/local_notifications/services/local_notifications_service.dart';
 import 'package:assestment_restaurant_app/core/provider/add_review/add_review_provider.dart';
 import 'package:assestment_restaurant_app/core/provider/bottom_nav/bottom_nav_provider.dart';
 import 'package:assestment_restaurant_app/core/provider/favorites/favorites_icon_provider.dart';
 import 'package:assestment_restaurant_app/core/provider/favorites/favorites_provider.dart';
+import 'package:assestment_restaurant_app/core/provider/local_notification/local_notification_provider.dart';
 import 'package:assestment_restaurant_app/core/provider/restaurant_detail/detail_description_provider.dart';
 import 'package:assestment_restaurant_app/core/provider/restaurant_detail/restaurant_detail_provider.dart';
 import 'package:assestment_restaurant_app/core/provider/restaurant_list/restaurant_list_provider.dart';
@@ -25,24 +27,53 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => BottomNavProvider()),
+        /// -- API --
+        /// Api Services
         Provider(create: (context) => ApiServices()),
+
+        /// -- LOCAL  NOTIFICATIONS --
+        /// Local Notification Services
+        Provider(create: (context) => LocalNotificationsService()..init()),
+
+        /// Local Notification Provider
+        ChangeNotifierProvider(
+          create: (context) => LocalNotificationProvider(
+            context.read<LocalNotificationsService>(),
+          )..requestPermission(),
+        ),
+
+        /// -- APPLICATION --
+        /// Bottom Nav Provider
+        ChangeNotifierProvider(create: (context) => BottomNavProvider()),
+
+        /// Restaurant List Provider
         ChangeNotifierProvider(
           create: (context) =>
               RestaurantListProvider(context.read<ApiServices>()),
         ),
+
+        /// Restaurant Detail Provider
         ChangeNotifierProvider(
           create: (context) =>
               RestaurantDetailProvider(context.read<ApiServices>()),
         ),
-        ChangeNotifierProvider(
-          create: (context) => AddReviewProvider(context.read<ApiServices>()),
-        ),
+
+        /// Detail Description Provider
         ChangeNotifierProvider(
           create: (context) => DetailDescriptionProvider(),
         ),
+
+        ChangeNotifierProvider(
+          create: (context) => AddReviewProvider(context.read<ApiServices>()),
+        ),
+
+        /// Favorites Provider
         ChangeNotifierProvider(create: (context) => FavoritesProvider()),
+
+        /// Favorites Icon Provider
         ChangeNotifierProvider(create: (context) => FavoritesIconProvider()),
+
+        /// Themes Provider
         ChangeNotifierProvider(create: (context) => ThemesProvider()),
       ],
       child: MyRestaurantApp(),
