@@ -55,10 +55,13 @@ class _BodyOfDetailState extends State<BodyOfDetail> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      widget.restaurantDetail.name,
-                      style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                        fontWeight: FontWeight.bold,
+                    Expanded(
+                      child: Text(
+                        widget.restaurantDetail.name,
+                        style: Theme.of(context).textTheme.displaySmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
                       ),
                     ),
 
