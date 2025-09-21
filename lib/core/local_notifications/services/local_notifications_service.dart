@@ -83,7 +83,6 @@ class LocalNotificationsService {
     } else if (timeZoneInfo is String) {
       tzName = timeZoneInfo;
     } else {
-
       // try several common property names
       try {
         final dynamic maybe =
@@ -93,9 +92,7 @@ class LocalNotificationsService {
         if (maybe is String && maybe.isNotEmpty) {
           tzName = maybe;
         }
-      } catch (_) {
-
-      }
+      } catch (_) {}
 
       if (tzName == 'UTC') {
         try {
