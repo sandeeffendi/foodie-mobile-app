@@ -121,10 +121,7 @@ class _AddReviewState extends State<AddReview> {
                                   labelStyle: Theme.of(context)
                                       .textTheme
                                       .bodyLarge
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color.fromARGB(128, 0, 0, 0),
-                                      ),
+                                      ?.copyWith(fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
@@ -170,10 +167,7 @@ class _AddReviewState extends State<AddReview> {
                                   labelStyle: Theme.of(context)
                                       .textTheme
                                       .bodyLarge
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color.fromARGB(128, 0, 0, 0),
-                                      ),
+                                      ?.copyWith(fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),
                                   ),
